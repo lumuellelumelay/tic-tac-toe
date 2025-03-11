@@ -1,6 +1,6 @@
-import { players } from './players.js';
+import { Players } from './players.js';
 
-class game {
+class Game {
   constructor() {
     this.players = this.initializePlayers();
     this.winnerPatter = this.pattern();
@@ -11,7 +11,20 @@ class game {
   }
 
   initializePlayers() {
-    // code here
+    const playerOne = document.querySelector('#player-one');
+    const playerTwo = document.querySelector('#player-two');
+    const playerOneScore = document.querySelector('#player-one-score');
+    const playerTwoScore = document.querySelector('#player-two-score');
+
+    const players = new Players();
+    players.creatingPlayers('Player 1');
+    players.creatingPlayers('Player 2');
+
+    playerOne.textContent = players.getPlayers()[0].playerName;
+    playerTwo.textContent = players.getPlayers()[1].playerName;
+
+    playerOneScore.textContent = players.getPlayers()[0].score;
+    playerTwoScore.textContent = players.getPlayers()[1].score;
   }
 
   initialize() {
@@ -30,6 +43,8 @@ class game {
   playerMove(cell, cellNumber) {
     if (cell.dataset.move === 'true') {
       // TODO: return error
+      // invoke animation I guess???
+      console.log('Cell already has content');
       return;
     } else {
       cell.dataset.move = 'true';
@@ -66,3 +81,7 @@ class game {
 
   // TODO: checkWinner()
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  new Game();
+});

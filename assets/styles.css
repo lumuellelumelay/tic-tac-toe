@@ -43,7 +43,7 @@ body {
     padding-bottom: 2rem;
 }
 
-.container .top-section h1 {
+.container .top-section .title {
     text-align: center;
     font: var(--title-font);
     color: var(--title-color);
@@ -54,18 +54,19 @@ body {
     grid-auto-flow: column;
     align-items: center;
     justify-content: center;
-    gap: 1rem;
+    gap: 4rem;
 
     padding-top: 1rem;
 }
 
 .container .top-section .player-container .player {
     border: var(--border-player);
-    width: 10rem;
+    width: 15rem;
     padding: 1rem;
 }
 
 .container .top-section .player-container .player .player-name {
+    text-align: center;
     font: var(--player-name-font);
     color: var(--player-name-color);
 }
@@ -84,6 +85,7 @@ body {
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
     border: var(--border-board);
+    border-radius: calc(2rem + 1rem / 2);
 
     align-items: center;
     justify-items: center;
@@ -95,5 +97,13 @@ body {
     height: 10rem;
     width: 10rem;
     border: var(--border-cell);
+    border-radius: 1rem;
     cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+.container .bottom-section .board .cell svg {
+    height: 100%;
+    width: 100%;
 }

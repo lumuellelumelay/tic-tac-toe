@@ -1,12 +1,12 @@
-import { createPlayer } from './player.js';
+import { CreatePlayer } from './createPlayers.js';
 
-export class players {
+export class Players {
   constructor() {
     this.players = [];
   }
 
   creatingPlayers(name) {
-    this.players.push(new createPlayer(name));
+    this.players.push(new CreatePlayer(name));
   }
 
   getPlayers() {

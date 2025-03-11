@@ -4,37 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/styles.css">
-    <script src="js/app.js" defer></script>
+    <script type="module" src="js/app.js" defer></script>
     <title>Tic Tac Toe</title>
 </head>
 <body>
     <div class="container">
         <div class="top-section">
-            <h1>Tic Tac Toe</h1>
+            <h1 class="title">Tic Tac Toe</h1>
             <div class="player-container">
                 <div class="player-one player">
-                    <p id="player-one" class="player-name">Player 1</p>
-                    <p id="player-one-score" class="player-score">5</p>
+                    <p id="player-one" class="player-name"></p>
+                    <p id="player-one-score" class="player-score"></p>
                 </div>
                 <div class="player-two player">
-                    <p id="player-two" class="player-name">Player 2</p>
-                    <p id="player-two-score" class="player-score">5</p>
+                    <p id="player-two" class="player-name"></p>
+                    <p id="player-two-score" class="player-score"></p>
                 </div>
             </div>
         </div>
         <div class="bottom-section">
             <div class="board">
-                <div data-cell="1" id="1" class="cell"></div>
-                <div data-cell="2" id="1" class="cell"></div>
-                <div data-cell="3" id="1" class="cell"></div>
+                <div data-cell="1" data-move="false" id="1" class="cell"></div>
+                <div data-cell="2" data-move="false" id="1" class="cell"></div>
+                <div data-cell="3" data-move="false" id="1" class="cell"></div>
     
-                <div data-cell="4" id="2" class="cell"></div>
-                <div data-cell="5" id="2" class="cell"></div>
-                <div data-cell="6" id="2" class="cell"></div>
+                <div data-cell="4" data-move="false" id="2" class="cell"></div>
+                <div data-cell="5" data-move="false" id="2" class="cell"></div>
+                <div data-cell="6" data-move="false" id="2" class="cell"></div>
     
-                <div data-cell="7" id="3" class="cell"></div>
-                <div data-cell="8" id="3" class="cell"></div>
-                <div data-cell="9" id="3" class="cell"></div>
+                <div data-cell="7" data-move="false" id="3" class="cell"></div>
+                <div data-cell="8" data-move="false" id="3" class="cell"></div>
+                <div data-cell="9" data-move="false" id="3" class="cell"></div>
             </div>
         </div>
     </div>
