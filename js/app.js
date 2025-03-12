@@ -1,13 +1,29 @@
 import { Players } from './players.js';
+import { Symbols } from './symbol.js';
 
 class Game {
+  static pattern = [
+    //   Rows
+    ['1', '2', '3'],
+    ['4', '5', '6'],
+    ['7', '8', '9'],
+
+    //   Columns
+    ['1', '4', '7'],
+    ['2', '5', '8'],
+    ['3', '6', '9'],
+
+    //   Diagonals
+    ['1', '5', '9'],
+    ['3', '5', '7'],
+  ];
+
   constructor() {
+    this.initialize();
     this.players = this.initializePlayers();
-    this.winnerPatter = this.pattern();
     this.playersTurn = ['X', 'O'];
     this.currentPlayer = this.playersTurn[0];
     this.gameBoard = {};
-    this.initialize();
   }
 
   initializePlayers() {
@@ -36,8 +52,18 @@ class Game {
       const cellNumber = e.target.dataset.cell;
 
       this.playerMove(cell, cellNumber);
-      this.turn();
     });
+  }
+
+  symbolHelper() {
+    let symbolChoice;
+    if (this.currentPlayer === 'X') {
+      symbolChoice = Symbols.createCross();
+    } else {
+      symbolChoice = Symbols.createCircle();
+    }
+
+    return symbolChoice;
   }
 
   playerMove(cell, cellNumber) {
@@ -49,7 +75,10 @@ class Game {
     } else {
       cell.dataset.move = 'true';
       this.gameBoard[cellNumber] = this.currentPlayer;
-      // TODO: place player move
+      let symbolChoice = this.symbolHelper();
+      cell.appendChild(symbolChoice);
+
+      this.turn();
     }
   }
 
@@ -61,25 +90,21 @@ class Game {
     }
   }
 
-  pattern() {
-    return [
-      //   Rows
-      ['1', '2', '3'],
-      ['4', '5', '6'],
-      ['7', '8', '9'],
-
-      //   Columns
-      ['1', '4', '7'],
-      ['2', '5', '8'],
-      ['3', '6', '9'],
-
-      //   Diagonals
-      ['1', '5', '9'],
-      ['3', '5', '7'],
-    ];
+  // TODO: checkWinner()
+  checkWinner() {
+    for (let condition of Game.pattern) {
+      if (
+        this.gameBoard[condition[0]] &&
+        this.gameBoard[condition[0]] === this.gameBoard[condition[1]] &&
+        this.gameBoard[condition[0]] === this.gameBoard[condition[2]]
+      ) {
+        // TODO: declare winner
+        return;
+      }
+    }
   }
 
-  // TODO: checkWinner()
+  // TODO: Reset game
 }
 
 document.addEventListener('DOMContentLoaded', () => {
