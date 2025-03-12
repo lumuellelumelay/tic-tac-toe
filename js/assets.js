@@ -1,10 +1,10 @@
 export class Assets {
   changeStatus() {
-    const winnerBoard = document.querySelector('.winner-board');
-    if (winnerBoard.dataset.status === 'true') {
-      winnerBoard.dataset.status = 'false';
+    const boardOverlay = document.querySelector('.board-overlay');
+    if (boardOverlay.dataset.status === 'true') {
+      boardOverlay.dataset.status = 'false';
     } else {
-      winnerBoard.dataset.status = 'true';
+      boardOverlay.dataset.status = 'true';
     }
   }
 

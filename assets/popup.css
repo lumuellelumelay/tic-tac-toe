@@ -1,17 +1,27 @@
 @import url(./root.css);
 
-.winner-board[data-status="true"] {
+.board-overlay {
+    z-index: 1;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+
+.board-overlay[data-status="true"]{
     visibility: visible;
     opacity: 1;
     transition: opacity 100ms ease;
 }
 
-.winner-board[data-status="false"] {
+.board-overlay[data-status="false"] {
     visibility: hidden;
     opacity: 0;
 }
 
-.winner-board {
+.board-overlay .winner-board {
     display: flex;
     flex-direction: column;
     align-items: center;
