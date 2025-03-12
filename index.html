@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/styles.css">
+    <link rel="stylesheet" href="assets/render.css">
     <script type="module" src="js/app.js" defer></script>
     <title>Tic Tac Toe</title>
 </head>
@@ -21,6 +21,13 @@
                     <p id="player-two-score" class="player-score"></p>
                 </div>
             </div>
+        </div>
+        <div class="winner-board" id="board" data-status="false">
+            <div class="winner-section">
+                <p class="subtitle">Winner:</p>
+                <p id="winner" class="winner"></p>
+            </div>
+            <button class="button" id="reset-button">Next Round</button> <!-- change to new game -->
         </div>
         <div class="bottom-section">
             <div class="board">

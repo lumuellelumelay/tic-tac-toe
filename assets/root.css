@@ -1,0 +1,41 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+@font-face { 
+    font-family: Kola;
+    src: url(./fonts/Kola-Regular.ttf);
+}
+
+@font-face {
+    font-family: "Inter";
+    src: url(./fonts/Inter/Inter-VariableFont_opsz,wght.ttf);
+}
+
+:root {
+    --border-board: 5px solid #000;
+    --border-cell: 2px solid rgba(0, 0, 0, 0.5);
+    --border-player: 1px solid #000;
+
+    --title-font: 900 5rem/1.5 Kola, sans-serif;
+    --title-color: #000;
+
+    --player-name-font: italic 800 1.8rem/1.5 Inter, sans-serif;
+    --player-name-color: #000;
+
+    --board-font: 590 1.5rem/1.5 Inter, sans-serif;
+    --board-color: #000;
+
+    --winner-font: 690 1.5rem/1.5 Inter, sans-serif;
+    --winner-color: #000;
+
+    --player-score: 800 1.5rem/1.5 Inter, sans-serif;
+    --player-score-color: #000;
+
+}
+
+body {
+    max-height: 100vh;
+}
