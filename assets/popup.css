@@ -1,16 +1,21 @@
 @import url(./root.css);
 
 .winner-board[data-status="true"] {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 100ms ease;
 }
 
 .winner-board[data-status="false"] {
-    display: none;
+    visibility: hidden;
+    opacity: 0;
 }
 
 .winner-board {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
     position: absolute;
     top: 60%;
     left: 50%;

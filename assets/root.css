@@ -22,13 +22,13 @@
     --title-font: 900 5rem/1.5 Kola, sans-serif;
     --title-color: #000;
 
-    --player-name-font: italic 800 1.8rem/1.5 Inter, sans-serif;
+    --player-name-font: italic 800 1.5rem/1.5 Inter, sans-serif;
     --player-name-color: #000;
 
-    --board-font: 590 1.5rem/1.5 Inter, sans-serif;
+    --board-font: 590 1.3rem/1.5 Inter, sans-serif;
     --board-color: #000;
 
-    --winner-font: 690 1.5rem/1.5 Inter, sans-serif;
+    --winner-font: 690 1.3rem/1.5 Inter, sans-serif;
     --winner-color: #000;
 
     --player-score: 800 1.5rem/1.5 Inter, sans-serif;

@@ -51,22 +51,30 @@
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
     border: var(--border-board);
-    border-radius: calc(2rem + 1rem / 2);
+    border-radius: calc(2rem + 1rem);
 
     align-items: center;
     justify-items: center;
+    height: 35rem;
+    width: 35em;
     gap: 2rem;
     padding: 2rem 2rem;
 }
 
 .container .bottom-section .board .cell {
-    height: 10rem;
-    width: 10rem;
+    height: 8rem;
+    width: 8rem;
     border: var(--border-cell);
     border-radius: 1rem;
     cursor: pointer;
 
     transition: all 0.2s ease;
+}
+
+.container .bottom-section .board .cell:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    height: 8.5rem;
+    width: 8.5rem;
 }
 
 .container .bottom-section .board .cell svg {
