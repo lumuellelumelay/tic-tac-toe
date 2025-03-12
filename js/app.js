@@ -18,11 +18,18 @@ class Game {
     ['3', '5', '7'],
   ];
 
+  static resetBoard = {};
+  static winningPlayer = null; // null in first round
+  static round = 0;
+  static resetScore = 0;
+
   constructor() {
-    this.initialize();
     this.players = this.initializePlayers();
+    this.initialize();
+
     this.playersTurn = ['X', 'O'];
     this.currentPlayer = this.playersTurn[0];
+
     this.gameBoard = {};
   }
 
@@ -44,6 +51,7 @@ class Game {
   }
 
   initialize() {
+    console.log(this.players);
     const bottomSection = document.querySelector('.bottom-section');
     const board = bottomSection.querySelector('.board');
 
@@ -52,6 +60,7 @@ class Game {
       const cellNumber = e.target.dataset.cell;
 
       this.playerMove(cell, cellNumber);
+      this.checkWinner();
     });
   }
 
@@ -67,6 +76,8 @@ class Game {
   }
 
   playerMove(cell, cellNumber) {
+    if (!cell) return;
+
     if (cell.dataset.move === 'true') {
       // TODO: return error
       // invoke animation I guess???
@@ -98,13 +109,19 @@ class Game {
         this.gameBoard[condition[0]] === this.gameBoard[condition[1]] &&
         this.gameBoard[condition[0]] === this.gameBoard[condition[2]]
       ) {
-        // TODO: declare winner
+        // TODO: declare winner for that round and reset game
+        // TODO: Pop up winner and reset button
+        const winnerPlayer = this.currentPlayer === 'X' ? 'O' : 'X';
+        console.log(`The Winner is ${winnerPlayer}`);
         return;
       }
     }
   }
 
-  // TODO: Reset game
+  // TODO: Reset() game
+  resetGame() {
+    // resets the game
+  }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
