@@ -1,5 +1,6 @@
 import { Players } from './players.js';
 import { Symbols } from './symbol.js';
+import { Assets } from './assets.js';
 
 class Game {
   static pattern = [
@@ -18,9 +19,6 @@ class Game {
     ['3', '5', '7'],
   ];
 
-  static resetBoard = {};
-  static winningPlayer = null; // null in first round
-  static round = 0;
   static resetScore = 0;
 
   constructor() {
@@ -31,6 +29,7 @@ class Game {
     this.currentPlayer = this.playersTurn[0];
 
     this.gameBoard = {};
+    this.assets = new Assets();
   }
 
   initializePlayers() {
@@ -48,10 +47,11 @@ class Game {
 
     playerOneScore.textContent = players.getPlayers()[0].score;
     playerTwoScore.textContent = players.getPlayers()[1].score;
+
+    return players;
   }
 
   initialize() {
-    console.log(this.players);
     const bottomSection = document.querySelector('.bottom-section');
     const board = bottomSection.querySelector('.board');
 
@@ -61,6 +61,20 @@ class Game {
 
       this.playerMove(cell, cellNumber);
       this.checkWinner();
+    });
+
+    const resetButton = document.querySelector('#reset-button');
+    resetButton.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (
+        this.players.getPlayers()[0].score === 3 ||
+        this.players.getPlayers()[1].score === 3
+      ) {
+        this.resetGame();
+      } else {
+        this.nextRound();
+      }
+      this.assets.changeStatus();
     });
   }
 
@@ -77,7 +91,6 @@ class Game {
 
   playerMove(cell, cellNumber) {
     if (!cell) return;
-
     if (cell.dataset.move === 'true') {
       // TODO: return error
       // invoke animation I guess???
@@ -89,11 +102,11 @@ class Game {
       let symbolChoice = this.symbolHelper();
       cell.appendChild(symbolChoice);
 
-      this.turn();
+      this.turnMove();
     }
   }
 
-  turn() {
+  turnMove() {
     if (this.currentPlayer === this.playersTurn[0]) {
       this.currentPlayer = this.playersTurn[1];
     } else {
@@ -101,7 +114,21 @@ class Game {
     }
   }
 
-  // TODO: checkWinner()
+  getCurrentPlayer(winnerPlayer) {
+    let player;
+    if (winnerPlayer === 'X') {
+      player = this.players.getPlayers()[0];
+      player.score += 1;
+      document.querySelector('#player-one-score').innerHTML = player.score;
+    } else {
+      player = this.players.getPlayers()[1];
+      player.score += 1;
+      document.querySelector('#player-two-score').innerHTML = player.score;
+    }
+
+    return player;
+  }
+
   checkWinner() {
     for (let condition of Game.pattern) {
       if (
@@ -109,18 +136,51 @@ class Game {
         this.gameBoard[condition[0]] === this.gameBoard[condition[1]] &&
         this.gameBoard[condition[0]] === this.gameBoard[condition[2]]
       ) {
-        // TODO: declare winner for that round and reset game
-        // TODO: Pop up winner and reset button
         const winnerPlayer = this.currentPlayer === 'X' ? 'O' : 'X';
-        console.log(`The Winner is ${winnerPlayer}`);
+        const currentPlayer = this.getCurrentPlayer(winnerPlayer);
+
+        this.assets.changeSubtitle(
+          this.players.getPlayers(),
+          currentPlayer.playerName
+        );
+        this.assets.changeStatus();
         return;
       }
     }
+    const checkCells = Array.from(document.querySelectorAll('.cell')).every(
+      (cell) => cell.dataset.move === 'true'
+    );
+
+    if (checkCells) {
+      this.assets.changeSubtitle(this.players.getPlayers(), 'Draw Round');
+      this.assets.changeStatus();
+    }
   }
 
-  // TODO: Reset() game
+  resetBoard() {
+    const cells = Array.from(document.querySelectorAll('.cell'));
+    cells.forEach((cell) => {
+      cell.dataset.move = 'false';
+      while (cell.firstChild) {
+        cell.removeChild(cell.firstChild);
+      }
+    });
+  }
+
+  nextRound() {
+    this.gameBoard = {};
+    this.resetBoard();
+  }
+
   resetGame() {
-    // resets the game
+    this.gameBoard = {};
+    this.players.getPlayers().forEach((player) => {
+      player.score = Game.resetScore;
+      document.querySelector('#player-one-score').innerHTML = player.score;
+      document.querySelector('#player-two-score').innerHTML = player.score;
+    });
+    this.resetBoard();
+    this.currentPlayer = this.playersTurn[0];
   }
 }
 
