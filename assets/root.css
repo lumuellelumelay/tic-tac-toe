@@ -15,7 +15,7 @@
 }
 
 :root {
-    --border-board: 5px solid #000;
+    --border-board: 4px solid #000;
     --border-cell: 2px solid rgba(0, 0, 0, 0.5);
     --border-player: 1px solid #000;
 
